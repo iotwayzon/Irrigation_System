@@ -1,7 +1,7 @@
 from django.db import models
 
 # Create your models here.
-class Admin(models.Model):
+class Agri_admin(models.Model):
     admin_id = models.AutoField(primary_key=True, null=False)
     admin_name = models.CharField(max_length=50, null=False)
     admin_email = models.EmailField(max_length=50, null=False, unique=True)
