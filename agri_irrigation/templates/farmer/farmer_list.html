@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Farmers</title>
+</head>
+<body>
+    <h1>Farmers</h1>
+    {% if  perms.agri_app.add_farmer %}
+    
+    <a href="{% url 'farmer_create' %}">Add New Farmer</a>
+    {% endif %}
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Address</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for farmer in farmers %}
+            <tr>
+                <td>{{ farmer.farmer_id }}</td>
+                <td>{{ farmer.farmer_name }}</td>
+                <td>{{ farmer.farmer_email }}</td>
+                <td>{{ farmer.farmer_phone_no }}</td>
+                <td>{{ farmer.farmer_address }}</td>
+                <td>
+                     {% if perms.agri_app.change_farmer %}
+                    <a href="{% url 'farmer_update' farmer.pk %}">Edit</a>
+                    {% endif %}
+                    {% if  perms.agri_app.delete_farmer %}
+                    <form action="{% url 'farmer_delete' farmer.pk %}" method="post" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit">Delete</button>
+                    </form>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
