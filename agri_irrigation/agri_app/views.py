@@ -9,10 +9,6 @@ from django.utils import timezone
 from django.urls import reverse
 from .models import *
 
-
-
-
-
 def RegisterView(request):
     if request.method == 'POST':
        # getting user inputs from frontend
@@ -84,7 +80,6 @@ def ForgotPassword(request):
             password_reset_url = request.build_absolute_uri(
                 reverse('reset-password', kwargs={'reset_id': new_password_reset.reset_id})
             )
-
             # Email content
             email_body = f"Reset your password using the link below:\n\n{password_reset_url}"
 
@@ -164,10 +159,7 @@ def ResetPassword(request, reset_id):
 
 @login_required(login_url="/login")
 def Home(request):
-    return render(request, 'index.html')
-
-
-
+    return render(request, 'dashboard.html')
 
 
 from django.shortcuts import render, get_object_or_404, redirect

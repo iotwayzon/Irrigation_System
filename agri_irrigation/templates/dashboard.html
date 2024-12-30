@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmer Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            display: flex;
+            min-height: 100vh;
+            margin: 0;
+            background: #f9f9f9;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            position: fixed;
+            height: 100%;
+            transition: all 0.3s;
+            overflow: hidden;
+        }
+
+        .sidebar.collapsed {
+            width: 60px;
+            
+        }
+
+        .sidebar .nav-link {
+            color: #ecf0f1;
+        }
+
+        .sidebar .nav-link:hover {
+            background-color: #34495e;
+        }
+
+        .sidebar .toggle-btn {
+            text-align: center;
+            cursor: pointer;
+            color: #ecf0f1;
+            padding: 10px;
+            background-color: #34495e;
+        }
+
+        .content {
+            margin-left: 60px;
+            width: 100%;
+            transition: margin-left 0.3s;
+        }
+
+        .content.collapsed {
+            margin-left: 250px;
+        }
+
+        .topbar {
+            background-color: #27ae60;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+        }
+
+        .topbar .profile-menu {
+            position: relative;
+        }
+
+        .topbar .profile-menu:hover .dropdown {
+            display: block;
+        }
+
+        .topbar .dropdown {
+            display: none;
+            position: absolute;
+            right: 0;
+            background-color: white;
+            color: black;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            border-radius: 5px;
+            z-index: 10;
+        }
+
+        .topbar .dropdown a {
+            display: block;
+            padding: 5px;
+            color: black;
+            text-decoration: none;
+        }
+
+        .topbar .dropdown a:hover {
+            background-color: #f1f1f1;
+        }
+
+        .battery-life {
+            display: flex;
+            align-items: center;
+        }
+
+        .battery-icon {
+            margin-right: 5px;
+            color: #ffeb3b;
+        }
+
+        .card {
+            margin-bottom: 20px;
+        }
+
+        .card-header {
+            font-weight: bold;
+            background-color: #27ae60;
+            color: white;
+        }
+
+        .status-indicator {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 5px;
+        }
+
+        .status-green {
+            background-color: green;
+        }
+
+        .status-red {
+            background-color: red;
+        }
+
+        .btn-status {
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar" id="sidebar">
+        <div class="toggle-btn" onclick="toggleSidebar()">
+            <i class="fas fa-bars"></i>
+        </div>
+        <nav class="nav flex-column">
+            <a class="nav-link" href="#"><i class="fas fa-home mr-2"></i>Dashboard</a>
+            <a class="nav-link" href="#"><i class="fas fa-cogs mr-2"></i>Settings</a>
+            <a class="nav-link" href="#"><i class="fas fa-leaf mr-2"></i>My Farm</a>
+            <a class="nav-link" href="#"><i class="fas fa-chart-line mr-2"></i>Analytics</a>
+        </nav>
+    </div>
+    <div class="content collapsed" id="content">
+        <div class="topbar">
+            <div class="battery-life">
+                <i class="fas fa-battery-full battery-icon"></i>
+                <span>Battery: 85%</span>
+            </div>
+            <div class="profile-menu">
+                <i class="fas fa-user-circle fa-2x"></i>
+                <div class="dropdown">
+                    <a href="#">Edit Profile</a>
+                    <a href="#">Reset Password</a>
+                    <a href="#">Logout</a>
+                </div>
+            </div>
+        </div>
+        <div class="container mt-4">
+            <h1>Farmer Dashboard</h1>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fas fa-tint mr-2"></i> Soil Moisture
+                        </div>
+                        <div class="card-body">
+                            <p>Current: 60%</p>
+                            <div class="btn-status">
+                                <span class="status-indicator status-green"></span>Normal
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fas fa-thermometer-half mr-2"></i> Temperature
+                        </div>
+                        <div class="card-body">
+                            <p>Current: 25°C</p>
+                            <div class="btn-status">
+                                <span class="status-indicator status-green"></span>Normal
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fas fa-cloud-rain mr-2"></i> Rainfall
+                        </div>
+                        <div class="card-body">
+                            <p>Last Hour: 2mm</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fas fa-power-off mr-2"></i> Pump Status
+                        </div>
+                        <div class="card-body">
+                            <p>Status: <span class="text-success">Running</span></p>
+                            <button class="btn btn-primary">Stop Pump</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fas fa-water mr-2"></i> Valve Status
+                        </div>
+                        <div class="card-body">
+                            <p>Status: <span class="text-success">Open</span></p>
+                            <button class="btn btn-primary">Close Valve</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fas fa-battery-full mr-2"></i> Battery Levels
+                        </div>
+                        <div class="card-body">
+                            <p>Sensor 1: 90%</p>
+                            <p>Sensor 2: 75%</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fas fa-chart-line mr-2"></i> Sensor Data
+                        </div>
+                        <div class="card-body">
+                            <canvas id="sensorChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const content = document.getElementById('content');
+            sidebar.classList.toggle('collapsed');
+            content.classList.toggle('collapsed');
+        }
+
+        const ctx = document.getElementById('sensorChart').getContext('2d');
+        const chartData = {
+            labels: ['00:00', '04:00', '08:00', '12:00', '16:00', '20:00', '24:00'],
+            datasets: [
+                {
+                    label: 'Soil Moisture',
+                    data: [60, 65, 70, 72, 75, 70, 68],
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    fill: false,
+                },
+                {
+                    label: 'Temperature',
+                    data: [22, 24, 26, 27, 25, 24, 23],
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    fill: false,
+                },
+            ],
+        };
+
+        const sensorChart = new Chart(ctx, {
+            type: 'line',
+            data: chartData,
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                    },
+                },
+            },
+        });
+    </script>
+</body>
+</html>
