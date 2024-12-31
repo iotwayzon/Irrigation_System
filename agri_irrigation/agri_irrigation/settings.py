@@ -45,6 +45,8 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -117,7 +119,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'hi' #'en-us'
 
 TIME_ZONE = 'UTC'
 
@@ -151,3 +153,29 @@ EMAIL_PORT=465
 EMAIL_USE_SSL=True
 EMAIL_HOST_USER="iotwayzon@gmail.com"
 EMAIL_HOST_PASSWORD="elvc ahsm pmzb waji"
+
+
+# -----    language change code  ------
+# settings.py
+
+# LOCALE_PATHS = (BASE_DIR + 'locale/', )
+
+USE_I18N = True
+USE_L10N = True
+USE_TZ = True
+
+# List of available languages
+LANGUAGES = [
+    ('en', 'English'),
+    ('hi', 'hindi'),
+    ('mr', 'Marathi'),
+    # Add more languages as needed
+]
+
+# Default language
+LANGUAGE_CODE = 'en'
+
+# Path to translation files
+LOCALE_PATHS = [
+    BASE_DIR / 'locale/',
+]

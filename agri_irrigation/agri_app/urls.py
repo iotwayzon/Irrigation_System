@@ -17,3 +17,4 @@ urlpatterns = [
        path('<int:pk>/update/', views.farmer_update, name='farmer_update'),
        path('<int:pk>/delete/', views.farmer_delete, name='farmer_delete'),
 ]
+

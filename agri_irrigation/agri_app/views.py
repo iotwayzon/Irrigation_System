@@ -157,10 +157,15 @@ def ResetPassword(request, reset_id):
 
 
 
-@login_required(login_url="/login")
-def Home(request):
-    return render(request, 'dashboard.html')
+# @login_required(login_url="/login")
+# def Home(request):
+#     return render(request, 'index.html')
 
+from django.utils.translation import gettext as _
+
+def Home(request):
+    greeting = _("Hello, World!")
+    return render(request, 'index.html', {'greeting': greeting})
 
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Farmer
