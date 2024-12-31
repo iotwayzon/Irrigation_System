@@ -1,0 +1,47 @@
+/* Sidebar styles */
+#sidebar {
+    width: 250px;
+    background-color: var(--bs-success-bg-subtle);
+    transition: width 0.3s ease;
+  }
+  #sidebar.collapsed {
+    width: 80px;
+  }
+
+  #sidebar .nav-link i {
+    color: black; /* Change to your desired color */
+  }
+  
+  #sidebar .nav-link span {
+    display: inline-block;
+    transition: opacity 0.3s ease;
+    color: black;
+  }
+
+  /* Change icon color on hover */
+#sidebar .nav-link:hover i {
+    color: #4CAF50; /* Change to your desired hover color */
+  }
+  
+  /* Change text color on hover */
+  #sidebar .nav-link:hover span {
+    color: #4CAF50; /* Change to your desired hover color */
+  }
+
+  #sidebar.collapsed .nav-link span {
+    opacity: 0;
+    visibility: hidden;
+  }
+  #sidebar.collapsed .nav-link i {
+    margin-right: 0;
+  }
+  
+  /* Content wrapper */
+  #content {
+    transition: margin-left 0.3s ease;
+    margin-left: 250px;
+  }
+  #sidebar.collapsed + #content {
+    margin-left: 80px;
+  }
+  

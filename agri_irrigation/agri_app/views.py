@@ -157,9 +157,15 @@ def ResetPassword(request, reset_id):
 
 
 
+<<<<<<< HEAD
 # @login_required(login_url="/login")
 # def Home(request):
 #     return render(request, 'index.html')
+=======
+@login_required(login_url="/login")
+def Home(request):
+    return render(request, 'new_dashboard.html')
+>>>>>>> e99361c5efecf707329154c9e54ccd492a14579a
 
 from django.utils.translation import gettext as _
 
