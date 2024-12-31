@@ -159,7 +159,7 @@ def ResetPassword(request, reset_id):
 
 @login_required(login_url="/login")
 def Home(request):
-    return render(request, 'dashboard.html')
+    return render(request, 'new_dashboard.html')
 
 
 from django.shortcuts import render, get_object_or_404, redirect
